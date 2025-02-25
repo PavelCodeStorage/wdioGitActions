@@ -27,13 +27,13 @@ jobs:
           name: Run tests
           command: npm run wdio
 
-      - run:
-          name: Generate report
-          command: npm run report
-          when: always
+      # - run:
+      #     name: Generate report
+      #     command: npm run report
+      #     when: always
 
-      - store_artifacts:
-          path: allure-report
+      # - store_artifacts:
+      #     path: allure-report
 
 workflows:
   version: 2
