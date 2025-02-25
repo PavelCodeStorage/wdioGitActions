@@ -30,7 +30,7 @@
     "test": "run-s test:*",
     "test:lint": "eslint 'src/**/*.ts' 'test/**/*.js!(setup.js)'",
     "test:unit": "jest --config=jest.config.cjs --detectOpenHandles",
-    "test:features": "wdio run wdio.BUILD.conf.ts",
+    "test:features": "wdio run wdio.conf.ts",
     "wdio": "wdio run wdio.web.conf.ts",
     "report": "allure generate --clean && allure open"
 

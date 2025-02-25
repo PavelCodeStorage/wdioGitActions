@@ -6,6 +6,7 @@ import { config as buildConfig } from './wdio.conf.js';
 
 const dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
+
 buildConfig.capabilities = [{
     browserName: 'chrome',
     'goog:chromeOptions': {
@@ -13,6 +14,7 @@ buildConfig.capabilities = [{
             '--disable-infobars',
             '--window-size=1280,800',
             '--no-sandbox',
+            '--headless',
             '--disable-gpu',
             '--disable-setuid-sandbox',
             '--disable-dev-shm-usage',
