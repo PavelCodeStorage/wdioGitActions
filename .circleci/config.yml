@@ -3,7 +3,6 @@ jobs:
   build:
     docker:
       - image: node:latest
-      - image: pdovwork/seavus_code_talks:latest
 
     working_directory: ~/repo
 
