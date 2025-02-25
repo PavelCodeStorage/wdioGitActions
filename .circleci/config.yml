@@ -29,7 +29,7 @@ jobs:
 
       - run:
           name: Generate report
-          command: npm run report:generate
+          command: npm run report
           when: always
 
       - store_artifacts:
