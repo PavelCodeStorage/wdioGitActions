@@ -15,23 +15,23 @@ export const config: WebdriverIO.Config = {
     // on a remote machine).
     runner: 'local',
 
-    reporters: [
-        [
-          "allure",
-          {
-            outputDir: "allure-results",
-            disableWebdriverStepsReporting: true,
-            disableWebdriverScreenshotsReporting: false,
-            useCucumberStepReporter: false,
-          },
-        ],
-      ],
+    // reporters: [
+    //     [
+    //       "allure",
+    //       {
+    //         outputDir: "allure-results",
+    //         disableWebdriverStepsReporting: true,
+    //         disableWebdriverScreenshotsReporting: false,
+    //         useCucumberStepReporter: false,
+    //       },
+    //     ],
+    //   ],
  
-      afterStep: function (step, scenario, result) {
-        if (result.error) {
-            browser.takeScreenshot();
-        }
-    },
+    //   afterStep: function (step, scenario, result) {
+    //     if (result.error) {
+    //         browser.takeScreenshot();
+    //     }
+    // },
 
 
     specs: [
@@ -83,8 +83,8 @@ export const config: WebdriverIO.Config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'trace',
-    outputDir: path.join(dirname, '/logs'),
+    // logLevel: 'trace',
+    // outputDir: path.join(dirname, '/logs'),
     //
     // Set specific log levels per logger
     // loggers:

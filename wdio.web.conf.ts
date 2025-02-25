@@ -22,8 +22,5 @@ buildConfig.capabilities = [{
     },
 }];
 
-if (process.env.CI) {
-    buildConfig.outputDir = path.join(dirname, 'logs');
-}
 
 export const config = buildConfig;
