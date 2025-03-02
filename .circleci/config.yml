@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: pdovwork/seavus_code_talks:latest
-      - image: selenium/standalone-chrome:3.1.0
+      - image: selenium/standalone-chrome:latest
     working_directory: ~/repo
 
     working_directory: ~/repo
