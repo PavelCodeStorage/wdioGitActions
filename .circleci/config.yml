@@ -2,10 +2,8 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: pdovwork/seavus_code_talks:latest
-      - image: selenium/standalone-chrome:latest
-      
-    working_directory: ~/repo
+      - image: node:latest
+      - image: selenium/standalone-chrome:129.0.6668.100-20250222
 
     working_directory: ~/repo
 
