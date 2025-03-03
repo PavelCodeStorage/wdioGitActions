@@ -3,6 +3,11 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
+        ports:
+          - 4444
     steps:
         - name: ⬇️ Checkout Code
           uses: actions/checkout@v4
