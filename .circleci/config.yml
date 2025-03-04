@@ -6,8 +6,7 @@ jobs:
   build:
     docker:
       
-      - image: circleci/node:16
-      - image: selenium/node-chrome:latest
+            - image: selenium/node-chrome:latest
     working_directory: ~/repo
 
     steps:
