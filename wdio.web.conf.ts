@@ -17,7 +17,6 @@ capabilities: [{
             '--disable-dev-shm-usage', // Avoid issues with limited shared memory
             '--disable-infobars', // Disable Chrome's "info bar"
         ],
-        binary: '/usr/bin/google-chrome-stable' // Path to Chrome executable
     },
 }];
 
