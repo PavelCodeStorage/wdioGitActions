@@ -11,6 +11,9 @@ jobs:
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - checkout
+      
+workflows: null
+
       - run:
           name: Install Node Modules
           command: npm ci
