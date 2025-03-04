@@ -18,10 +18,10 @@ jobs:
           name: Restore Npm Package Cache
           key: npm-dependencies-{{ checksum "package-lock.json" }}
 
-      - run: sudo npm install -g node-gyp
-      - run: sudo npm install
+      - run: npm install -g node-gyp
+      - run: npm install
 
-      - run: sudo npm install chromedriver
+      - run: npm install chromedriver
 
 
       - save_cache:
