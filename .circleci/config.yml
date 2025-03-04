@@ -21,6 +21,7 @@ jobs:
       - run: npm install -g node-gyp
       - run: npm install
 
+
       - save_cache:
           name: Save Npm Package Cache
           key: npm-dependencies-{{ checksum "package-lock.json" }}
@@ -29,4 +30,4 @@ jobs:
 
       - run:
           name: Run tests
-          command: npm run wdio
+          command: npm run test:features

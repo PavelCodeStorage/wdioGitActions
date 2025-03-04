@@ -6,21 +6,19 @@ import { config as buildConfig } from './wdio.conf.js';
 
 const dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
-
-buildConfig.capabilities = [{
-    browserName: 'chrome',
-    'goog:chromeOptions': {
+capabilities: [{
+    browserName: 'chrome', // Use Chrome
+    'goog:chromeOptions': { // Chrome-specific options
         args: [
-            '--disable-infobars',
-            '--window-size=1280,800',
-            '--no-sandbox',
-            '--headless',
-            '--disable-gpu',
-            '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage',
+            '--headless=new', // Headless mode (new optimized version)
+            '--window-size=1280,800', // Window size
+            '--no-sandbox', // Bypass OS security model
+            '--disable-gpu', // Disable GPU hardware acceleration
+            '--disable-dev-shm-usage', // Avoid issues with limited shared memory
+            '--disable-infobars', // Disable Chrome's "info bar"
         ],
+        binary: '/usr/bin/google-chrome-stable' // Path to Chrome executable
     },
 }];
-
 
 export const config = buildConfig;
