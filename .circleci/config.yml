@@ -27,29 +27,4 @@ jobs:
 
       - run:
           name: Run tests
-          command: npm run web -- --reporters=allure --maxInstances=1
-
-      - run:
-          name: Generate report
-          command: npm run report:generate
-          when: always
-
-      - store_artifacts:
-          path: allure-report
-
-workflows:
-  version: 2
-  commit:
-     jobs:
-       - build
-
-  nightly:
-    triggers:
-      - schedule:
-          cron: "* 5 * * *"
-          filters:
-            branches:
-              only:
-                - main
-    jobs:
-      - build
+          command: npm run test:features
