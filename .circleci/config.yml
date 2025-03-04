@@ -1,32 +1,45 @@
 version: 2.1
-jobs:
-  build:
-    docker: 
-      - image: cimg/node:20.4.0-browsers
-    steps:
 
-      - browser-tools/install-chrome
-      - browser-tools/install-chromedriver
+orbs:
+  browser-tools: circleci/browser-tools@1.4.5  # Use the latest version available
+
+jobs:
+  test:
+    docker:
+      - image: cimg/node:18.17.0-browsers  # Pre-installed Chrome, Firefox, and drivers
+    steps:
+      - checkout
+
+      - browser-tools/install-browser-tools:
+          chrome-version: latest  # Install the latest stable Chrome
+          firefox-version: latest # Install the latest stable Firefox
+
       - run:
+          name: Check browser versions
           command: |
             google-chrome --version
             chromedriver --version
-          name: Check install
-
-      - restore_cache:
-          name: Restore Npm Package Cache
-          key: npm-dependencies-{{ checksum "package-lock.json" }}
-
-      - run: npm install -g node-gyp
-      - run: npm install
-
-
-      - save_cache:
-          name: Save Npm Package Cache
-          key: npm-dependencies-{{ checksum "package-lock.json" }}
-          paths:
-             - node_modules
+            firefox --version
+            geckodriver --version
 
       - run:
-          name: Run tests
-          command: npm run test:features
+          name: Install Dependencies
+          command: npm install
+
+      - save_cache:
+          name: Save npm package cache
+          key: npm-dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+
+      - run:
+          name: Start Chromedriver
+          command: |
+            npx chromedriver --port=9515 &
+            sleep 3  # Give Chromedriver time to start
+
+      - run:
+          name: Run Tests
+          command: npm run wdio
+        environment:
+          WDIO_CAPABILITIES: '{"browserName": "chrome", "goog:chromeOptions": {"args": ["--no-sandbox", "--disable-dev-shm-usage"]}}'
