@@ -1,26 +1,32 @@
 version: 2.1
-orbs:
-  browser-tools: circleci/browser-tools@1.2.1
 jobs:
-  e2e:
-    working_directory: /tmp/circle-run
-    docker:
-      - image: cimg/node:14.16.1-browsers
-    resource_class: large
+  build:
+    docker: 
+      - image: cimg/node:20.4.0-browsers
     steps:
+
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
-      - checkout
-      
-workflows: null
+      - run:
+          command: |
+            google-chrome --version
+            chromedriver --version
+          name: Check install
+
+      - restore_cache:
+          name: Restore Npm Package Cache
+          key: npm-dependencies-{{ checksum "package-lock.json" }}
+
+      - run: npm install -g node-gyp
+      - run: npm install
+
+
+      - save_cache:
+          name: Save Npm Package Cache
+          key: npm-dependencies-{{ checksum "package-lock.json" }}
+          paths:
+             - node_modules
 
       - run:
-          name: Install Node Modules
-          command: npm ci
-      - save_cache:
-          key: dependency-cache-{{ .Environment.CACHE_VERSION }}-{{ checksum "package.json" }}-{{checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: Run E2E tests on staging
-          command: npm run wdio
+          name: Run tests
+          command: npm run test:features
