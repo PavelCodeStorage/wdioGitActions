@@ -27,7 +27,7 @@ jobs:
 
       - run:
           name: Run tests
-          command: npm run web -- --reporters=allure --maxInstances=1
+          command: npm run test:features
 
       - run:
           name: Generate report
