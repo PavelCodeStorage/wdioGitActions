@@ -6,7 +6,7 @@ jobs:
   build:
     docker:
       - image: pdovwork/seavus_code_talks:latest
-      - image: selenium/standalone-chrome:latest
+      - image: selenium/node-chrome:latest
     working_directory: ~/repo
 
     steps:
